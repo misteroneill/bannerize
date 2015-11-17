@@ -1,0 +1,40 @@
+{
+  "name": "bannerize",
+  "version": "0.0.0",
+  "description": "Add a dynamic banner/license comment to any text file.",
+  "main": "index.js",
+  "bin": "cli.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/misteroneill/bannerize.git"
+  },
+  "keywords": [
+    "banner",
+    "comment",
+    "license",
+    "build",
+    "prepend",
+    "minify"
+  ],
+  "author": "Pat O'Neill <pgoneill@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/misteroneill/bannerize/issues"
+  },
+  "homepage": "https://github.com/misteroneill/bannerize",
+  "dependencies": {
+    "cli": "^0.11.1",
+    "cpr": "^1.0.0",
+    "ejs": "^2.3.4",
+    "find-root": "^0.1.1",
+    "flatten": "0.0.1",
+    "globby": "^4.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4",
+    "rimraf": "^2.4.3"
+  }
+}
