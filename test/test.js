@@ -80,4 +80,25 @@ describe('bannerize', function () {
       ]));
     });
   });
+
+  it('throws on a missing banner', function () {
+    return bannerize('*.js', {banner: 'banner-missing.ejs'}).catch(function (e) {
+      assert(e instanceof Error);
+      assert.equal(e.message.substr(0, 6).toLowerCase(), 'enoent');
+    });
+  });
+
+  it('throws on an invalid/unparseable banner', function () {
+    return bannerize('*.js', {banner: 'banner-invalid.ejs'}).catch(function (e) {
+      assert(e instanceof Error);
+      assert.equal(e.message.substr(0, 3).toLowerCase(), 'ejs');
+    });
+  });
+
+  it('throws on an empty banner', function () {
+    return bannerize('*.js', {banner: 'banner-empty.ejs'}).catch(function (e) {
+      assert(e instanceof Error);
+      assert.equal(e.message.substr(0, 5).toLowerCase(), 'empty');
+    });
+  });
 });

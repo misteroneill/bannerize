@@ -31,16 +31,10 @@ function normalize(patterns) {
  * @return  {String}
  */
 function render(filename, context) {
-  var banner;
-
-  try {
-    banner = ejs.render(
-      fs.readFileSync(filename, {encoding: 'utf8'}),
-      context
-    ).trim();
-  } catch (x) {
-    throw new Error('Missing banner: ' + filename);
-  }
+  var banner = ejs.render(
+    fs.readFileSync(filename, {encoding: 'utf8'}),
+    context
+  ).trim();
 
   if (!banner) {
     throw new Error('Empty banner: ' + filename);
