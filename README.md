@@ -1,4 +1,4 @@
-# Bannerize
+# Bannerize [![Build Status](https://travis-ci.org/misteroneill/bannerize.svg?branch=master)](https://travis-ci.org/misteroneill/bannerize)
 
 Add dynamic banner/license comments to files in a build process.
 
