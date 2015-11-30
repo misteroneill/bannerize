@@ -1,6 +1,6 @@
 {
   "name": "bannerize",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Add a dynamic banner/license comment to any text file.",
   "main": "index.js",
   "bin": "cli.js",
