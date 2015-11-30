@@ -6,6 +6,17 @@ var globby = require('globby');
 var path = require('path');
 
 /**
+ * Whether or not the path is absolute.
+ *
+ * @private
+ * @param  {String}  p
+ * @return {Boolean}
+ */
+function isAbsolute(p) {
+  return path.isAbsolute ? path.isAbsolute(p) : path.resolve(p) === p;
+}
+
+/**
  * Normalize an array of patterns.
  *
  * @private
@@ -56,7 +67,7 @@ function render(filename, context) {
  */
 function getPath(fn, cwd) {
   cwd = cwd || process.cwd();
-  return path.isAbsolute(fn) ? fn : path.join(cwd, fn);
+  return isAbsolute(fn) ? fn : path.join(cwd, fn);
 }
 
 /**
