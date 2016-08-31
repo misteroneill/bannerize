@@ -11,8 +11,10 @@ function read(f) {
   return fs.readFileSync(f, {encoding: 'utf8'}).trim();
 }
 
-function contents(c) {
-  return Array.isArray(c) ? c.join('\n') : c;
+function contents(c, linebreak) {
+    linebreak = linebreak || '\n';
+
+  return Array.isArray(c) ? c.join(linebreak) : c;
 }
 
 describe('bannerize', function () {
@@ -79,6 +81,36 @@ describe('bannerize', function () {
         'body{font-family:sans-serif;}'
       ]));
     });
+  });
+
+  it('supports a `lineBreaks` option LF', function() {
+      return bannerize(['*.css', '*.js'], {cwd: 'subdir', lineBreaks: 'LF'}).then(function () {
+
+        assert.equal(read('subdir/app.js'), contents([
+          '// It is the year ' + YEAR,
+          'console.log(\'app.js\');'
+        ]));
+
+        assert.equal(read('subdir/app.css'), contents([
+          '// It is the year ' + YEAR,
+          'body{font-family:sans-serif;}'
+        ]));
+      });
+  });
+
+  it('supports a `lineBreaks` option CRLF', function() {
+      return bannerize(['*.css', '*.js'], {cwd: 'subdir', lineBreaks: 'CRLF'}).then(function () {
+
+        assert.equal(read('subdir/app.js'), contents([
+          '// It is the year ' + YEAR,
+          'console.log(\'app.js\');'
+        ], '\r\n'));
+
+        assert.equal(read('subdir/app.css'), contents([
+          '// It is the year ' + YEAR,
+          'body{font-family:sans-serif;}'
+        ], '\r\n'));
+      });
   });
 
   it('throws on a missing banner', function () {

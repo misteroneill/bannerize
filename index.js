@@ -71,6 +71,22 @@ function getPath(fn, cwd) {
 }
 
 /**
+ * Gets linebreak.
+ *
+ * @private
+ * @param   {String} lineBreaks
+ * @return  {String}
+ */
+function getLinebreak(lineBreaks) {
+    if (lineBreaks && lineBreaks.toLowerCase() === 'crlf') {
+        return '\r\n';
+    }
+    else {
+        return '\n';
+    }
+}
+
+/**
  * Prepend a banner/license comment to a file.
  *
  * @function bannerize
@@ -82,6 +98,8 @@ function getPath(fn, cwd) {
  *           A path to a custom banner template file.
  * @param    {String} [options.cwd=process.cwd()]
  *           Customize where relative patterns should match from.
+ * @param    {String} [options.lineBreaks="LF"]
+ *           Set linebreaks (LF, CRLF)
  * @return   {Promise}
  *           A promise which resolves with an array of all the files that were
  *           modified.
@@ -98,7 +116,7 @@ module.exports = function bannerize(patterns, options) {
     banner = render(banner, {pkg: pkg, date: date});
     return flatten(files).map(function (file) {
       file = getPath(file, cwd);
-      fs.writeFileSync(file, [banner, fs.readFileSync(file)].join('\n'));
+      fs.writeFileSync(file, [banner, fs.readFileSync(file)].join(getLinebreak(options.lineBreaks)));
       return file;
     });
   });
