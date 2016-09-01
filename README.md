@@ -56,4 +56,4 @@ The `bannerize` module can be used in your programs. It exports a single functio
 
 - `banner` A banner file location. Defaults to `banner.ejs` in the `cwd`.
 - `cwd` Override the `cwd` for all paths passed to `bannerize`. Relative paths will be relative to `process.cwd()`. Defaults to `process.cwd()`.
-- `lineBreak` Sets the linebreak (CRLF, LF). Defaults to LF.
+- `lineBreak` Sets the linebreak (`'CRLF'`, `'LF'`). Defaults to `'LF'`.

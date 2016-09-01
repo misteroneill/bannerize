@@ -80,8 +80,7 @@ function getPath(fn, cwd) {
 function getLinebreak(lineBreaks) {
     if (lineBreaks && lineBreaks.toLowerCase() === 'crlf') {
         return '\r\n';
-    }
-    else {
+    } else {
         return '\n';
     }
 }
