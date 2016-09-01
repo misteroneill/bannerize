@@ -6,8 +6,7 @@
   "bin": "cli.js",
   "scripts": {
     "test": "mocha test",
-    "preversion": "npm test",
-    "postversion": "git push && git push --tags"
+    "preversion": "npm test"
   },
   "repository": {
     "type": "git",
