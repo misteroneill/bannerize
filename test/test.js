@@ -43,6 +43,16 @@ describe('bannerize', function () {
     });
   });
 
+  it('strips BOM characters from output', function () {
+    return bannerize('bom.css').then(function () {
+
+      assert.equal(read('bom.css'), contents([
+        '// Project is: bannerize',
+        'there is a bom here!'
+      ]));
+    });
+  });
+
   it('can bannerize multiple files in the cwd', function () {
     return bannerize(['*.css', '*.js']).then(function () {
 

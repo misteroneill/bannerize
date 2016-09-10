@@ -4,6 +4,7 @@ var flatten = require('flatten');
 var fs = require('fs');
 var globby = require('globby');
 var path = require('path');
+var stripBom = require('strip-bom');
 
 /**
  * Whether or not the path is absolute.
@@ -115,7 +116,10 @@ module.exports = function bannerize(patterns, options) {
     banner = render(banner, {pkg: pkg, date: date});
     return flatten(files).map(function (file) {
       file = getPath(file, cwd);
-      fs.writeFileSync(file, [banner, fs.readFileSync(file)].join(getLinebreak(options.lineBreaks)));
+      fs.writeFileSync(
+        file,
+        [banner, stripBom(fs.readFileSync(file, {encoding: 'utf8'}))].
+          join(getLinebreak(options.lineBreaks)));
       return file;
     });
   });

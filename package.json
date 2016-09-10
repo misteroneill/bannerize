@@ -32,7 +32,8 @@
     "ejs": "^2.3.4",
     "find-root": "^0.1.1",
     "flatten": "0.0.1",
-    "globby": "^4.0.0"
+    "globby": "^4.0.0",
+    "strip-bom": "^3.0.0"
   },
   "devDependencies": {
     "mocha": "^2.3.4",
