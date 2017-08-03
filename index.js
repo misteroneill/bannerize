@@ -98,8 +98,8 @@ function getLinebreak(lineBreaks) {
  *           A path to a custom banner template file.
  * @param    {String} [options.cwd=process.cwd()]
  *           Customize where relative patterns should match from.
- * @param    {String} [options.lineBreaks="LF"]
- *           Set linebreaks (LF, CRLF)
+ * @param    {String} [options.lineBreak="LF"]
+ *           Set linebreaks ("LF" or "CRLF")
  * @return   {Promise}
  *           A promise which resolves with an array of all the files that were
  *           modified.
@@ -119,7 +119,7 @@ module.exports = function bannerize(patterns, options) {
       fs.writeFileSync(
         file,
         [banner, stripBom(fs.readFileSync(file, {encoding: 'utf8'}))].
-          join(getLinebreak(options.lineBreaks)));
+          join(getLinebreak(options.lineBreaks || options.lineBreak)));
       return file;
     });
   });
